@@ -1,22 +1,7 @@
-source /etc/profile.d/RkEnv.sh
+cd /oem/opt/app
 
-case "$1" in
-	start)
-		[ -f /oem/RkLunch.sh ] && source /oem/RkLunch.sh
-		#recovery test
-		if [ -e "/oem/rockchip_test/auto_reboot.sh" ]; then
-			mkdir /data/cfg/rockchip_test
-			cp /oem/rockchip_test/auto_reboot.sh /data/cfg/rockchip_test
-			source /data/cfg/rockchip_test/auto_reboot.sh &
-		fi
-		;;
-	stop)
-		[ -f /oem/RkLunch-stop.sh ] && source /oem/RkLunch-stop.sh
-		printf "stop finished\n"
-		;;
-	*)
-		echo "Usage: $0 {start|stop}"
-		exit 1
-		;;
-esac
+./start_app.sh &
+
+/oem/opt/app/wifi_on.sh
+mount -t nfs 10.62.240.129:/home/tangwei/workstation/arm-test/fs/rknfs /mnt -o nolock
 exit 0

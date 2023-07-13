@@ -44,12 +44,14 @@ function lunch_rockchip()
 	export TARGET_OUTPUT_DIR="$BUILDROOT_OUTPUT_DIR/$TARGET_DIR_NAME"
 
 	mkdir -p $TARGET_OUTPUT_DIR || return
-
+	CURRENT_DIR=$(pwd)
 	echo "==========================================="
 	echo
 	echo "#TARGET_BOARD=`echo $RK_BUILD_CONFIG | cut -d '_' -f 2`"
 	echo "#OUTPUT_DIR=output/$TARGET_DIR_NAME"
 	echo "#CONFIG=${RK_BUILD_CONFIG}_defconfig"
+	echo "#TARGET_OUTPUT_DIR=${TARGET_OUTPUT_DIR}"
+	echo "#pwd=$CURRENT_DIR"
 	echo
 	echo "==========================================="
 
